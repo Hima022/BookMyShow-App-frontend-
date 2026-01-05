@@ -1,1 +1,19 @@
 # BookMyShow-App-frontend-
+movie-ticket-booking-bootstrap-|
+|-index.html
+|-sigiin.html
+|-signup.html
+|-home.html
+|-movies.html
+|-shows.html
+|-bookings.html
+|-seats.html
+|-confirm.html
+|-index.html
+JS-|
+|-auth.js
+admin-|
+|-city-management.html
+|-admin-dashboard.html
+theater-|
+|-theater-dashboard.html
