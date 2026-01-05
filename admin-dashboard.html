@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>City Management</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  html, body {
+    height: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-content {
+    flex: 1;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- APPLICATION ADMIN NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand fw-bold" href="../home.html">Movie Ticket Booking</a>
+
+  <ul class="navbar-nav me-3">
+    <li class="nav-item"><a class="nav-link" href="../home.html">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="../movies.html">Movies</a></li>
+    <li class="nav-item"><a class="nav-link" href="../bookings.html">My Bookings</a></li>
+    <li class="nav-item"><a class="nav-link" href="admin-dashboard.html">Admin</a></li>
+    <li class="nav-item"><a class="nav-link active">Cities</a></li>
+  </ul>
+
+  <form class="d-flex ms-auto me-3">
+    <input class="form-control form-control-sm me-2" placeholder="Search movies...">
+    <button class="btn btn-outline-light btn-sm">🔍</button>
+  </form>
+
+  <div class="dropdown">
+    <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">
+      Welcome, <span id="navUsername"></span>
+      <span class="badge bg-danger ms-1">Admin</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><a class="dropdown-item">Profile</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item text-danger" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<div class="page-content">
+  <div class="container mt-4">
+
+    <h3 class="mb-3">Cities</h3>
+
+    <!-- ADD CITY FORM -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="mb-3">Add City</h6>
+
+        <div class="row g-2">
+          <div class="col-md-4">
+            <input type="text" id="cityId"
+                  class="form-control form-control-sm"
+                  placeholder="City ID">
+          </div>
+
+          <div class="col-md-6">
+            <input type="text" id="cityName"
+                  class="form-control form-control-sm"
+                  placeholder="City Name">
+          </div>
+
+          <div class="col-md-2">
+            <button class="btn btn-primary btn-sm w-100"
+                    onclick="addCity()">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CITY TABLE -->
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>City ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="cityTable">
+        <tr>
+          <td>3</td>
+          <td>Chicago</td>
+          <td>
+            <button class="btn btn-warning btn-sm">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center py-3">
+  © 2025 DSP Movie Ticket Booking. All rights reserved.
+</footer>
+
+<!-- AUTH + CITY SCRIPT -->
+<script src="../js/auth.js"></script>
+<script>
+function addCity() {
+  const id = document.getElementById("cityId").value;
+  const name = document.getElementById("cityName").value;
+
+  if (id === "" || name === "") {
+    alert("Please enter city ID and name");
+    return;
+  }
+
+  const table = document.getElementById("cityTable");
+
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${id}</td>
+    <td>${name}</td>
+    <td>
+      <button class="btn btn-warning btn-sm">Edit</button>
+    </td>
+  `;
+
+  table.appendChild(row);
+
+  // clear fields
+  document.getElementById("cityId").value = "";
+  document.getElementById("cityName").value = "";
+}
+</script>
+
+
+</body>
+</html>

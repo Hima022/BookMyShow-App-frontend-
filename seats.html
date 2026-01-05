@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Select Seats</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-content {
+    flex: 1;
+  }
+
+  /* SCREEN */
+  .screen {
+    background: #e0e0e0;
+    padding: 6px;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto;
+    width: 60%;
+  }
+
+  /* SEATS */
+  .seat {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .available {
+    background-color: #28a745;
+  }
+
+  .booked {
+    background-color: #dc3545;
+    cursor: not-allowed;
+  }
+
+  .selected {
+    background-color: #0d6efd !important;
+  }
+
+  .seat-row {
+    gap: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand fw-bold" href="home.html">Movie Ticket Booking</a>
+
+  <ul class="navbar-nav me-3">
+    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="movies.html">Movies</a></li>
+    <li class="nav-item"><a class="nav-link" href="bookings.html">My Bookings</a></li>
+  </ul>
+
+  <form class="d-flex ms-auto me-3">
+    <input class="form-control form-control-sm me-2" placeholder="Search movies...">
+    <button class="btn btn-outline-light btn-sm">🔍</button>
+  </form>
+
+  <div class="dropdown">
+    <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">
+      Welcome, <span id="navUsername"></span>
+      <span class="badge bg-secondary ms-1">User</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><a class="dropdown-item">Profile</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item text-danger" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<div class="page-content">
+
+  <div class="container mt-4 text-center">
+    <h3>Select Seats for Show</h3>
+
+    <!-- SCREEN -->
+    <div class="screen mt-4">SCREEN</div>
+
+    <!-- SEATS -->
+    <div class="d-flex justify-content-center mt-3 seat-row">
+
+      <!-- A ROW -->
+      <div class="seat booked">A1</div>
+      <div class="seat available" onclick="toggleSeat(this)">A2</div>
+      <div class="seat available" onclick="toggleSeat(this)">A3</div>
+      <div class="seat available" onclick="toggleSeat(this)">A4</div>
+      <div class="seat available" onclick="toggleSeat(this)">A5</div>
+
+      <!-- B ROW -->
+      <div class="seat available" onclick="toggleSeat(this)">B1</div>
+      <div class="seat available" onclick="toggleSeat(this)">B2</div>
+      <div class="seat available" onclick="toggleSeat(this)">B3</div>
+      <div class="seat available" onclick="toggleSeat(this)">B4</div>
+      <div class="seat available" onclick="toggleSeat(this)">B5</div>
+    </div>
+
+    <!-- BOOK BUTTON -->
+    <div class="mt-4">
+      <a href="confirm.html" class="btn btn-primary">
+        Book Selected Seats
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center py-3">
+  © 2025 DSP Movie Ticket Booking. All rights reserved.
+</footer>
+
+<!-- AUTH + SEAT SCRIPT -->
+<script src="js/auth.js"></script>
+<script>
+  loadUser();
+  document.getElementById("navUsername").innerText =
+    localStorage.getItem("username");
+
+  function toggleSeat(seat) {
+    if (seat.classList.contains("booked")) return;
+    seat.classList.toggle("selected");
+  }
+</script>
+
+</body>
+</html>
